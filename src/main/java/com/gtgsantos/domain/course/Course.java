@@ -1,5 +1,6 @@
 package com.gtgsantos.domain.course;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -23,6 +24,11 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode
 public class Course {
+    
+    public Course() {
+        this.additionalCourses = new ArrayList<Course>();
+        this.lessons = new ArrayList<Lesson>();
+    }
     
     @Id
     @GeneratedValue

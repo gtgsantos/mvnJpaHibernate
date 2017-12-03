@@ -10,6 +10,7 @@ import com.gtgsantos.util.Constants;
 public class JpaUtil {
     
     private static EntityManagerFactory factory;
+   
     static {
         factory = Persistence.createEntityManagerFactory(Constants.EM_IDENTIFICATION);
     }
