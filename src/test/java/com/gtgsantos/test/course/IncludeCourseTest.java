@@ -1,5 +1,10 @@
 package com.gtgsantos.test.course;
 
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
+
+import java.util.List;
+
 import org.junit.Test;
 
 import com.gtgsantos.domain.course.Course;
@@ -17,7 +22,7 @@ public class IncludeCourseTest {
         repository.save(course);
         
         Course course2 = repository.find(course.getPk());
-        System.out.println("have id? " + course2.getPk() != null);
+        assertThat(course, is(course2));
     }
     
     
@@ -32,11 +37,13 @@ public class IncludeCourseTest {
         course1.addAdditionalCourse(course);
         repository.save(course1);
         
-        Course course3 = repository.find(course1.getPk());
         Course course2 = repository.find(course.getPk());
-        System.out.println("exists additional? " + !(course3.getAdditionalCourses() == null 
-                || course3.getAdditionalCourses().size() == 0));
-        System.out.println("exists master? " +  course2.getMaster() != null);
+        Course course3 = repository.find(course1.getPk());
+        List<Course> listCourses = repository.list();
+        
+        assertThat(course3.getAdditionalCourses().size(), is(1));
+        assertThat(course2.getMaster(), is(course3));
+        assertThat(listCourses.size(), is(3)); // because test one already inserted one value
         
     }
     

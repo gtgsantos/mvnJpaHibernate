@@ -1,9 +1,11 @@
 package com.gtgsantos.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
-import com.gtgsantos.domain.course.Course;
 import com.gtgsantos.repository.util.JpaUtil;
 
 public abstract class AbstractRepository<T> {
@@ -24,13 +26,19 @@ public abstract class AbstractRepository<T> {
         //JpaUtil.close(); // review this
     }
     
-    public Course find(Long id) {
+    public T find(Long id) {
         //EntityTransaction transaction = manager.getTransaction();
         //transaction.begin();
-        return (Course) manager.find(persistedClass, id);
+        return (T) manager.find(persistedClass, id);
         
         //transaction.commit();
         //manager.close();
         //JpaUtil.close(); // review this
+    }
+    
+    
+    public List<T> list() {
+        Query query = manager.createQuery("from " + persistedClass.getName());
+        return (List<T>) query.getResultList();
     }
 }
