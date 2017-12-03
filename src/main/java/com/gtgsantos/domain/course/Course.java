@@ -41,5 +41,18 @@ public class Course {
     @ManyToOne
     @JoinColumn(name = "COU_FK_MASTER")
     private Course master;
+    
+    public void addAdditionalCourse(Course course) {
+        if (!course.getPk().equals(this.getPk())) {
+            course.setMaster(this);
+        }
+        this.getAdditionalCourses().add(course);
+    }
+    
+    public void addAdditionalLesson(Lesson lesson) {
+        lesson.setCourse(this);
+        this.getLessons().add(lesson);
+    }
+
 
 }
