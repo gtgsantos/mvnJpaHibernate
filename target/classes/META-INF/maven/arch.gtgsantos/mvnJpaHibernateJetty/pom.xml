@@ -3,7 +3,7 @@
   <groupId>arch.gtgsantos</groupId>
   <artifactId>mvnJpaHibernateJetty</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>Example of an archetype using jetty, jpa(hibernate) and h2 database</name>
+  <name>Example of an archetype using jpa(hibernate) and h2 database</name>
   
   <properties>
   		<!--  versões das bibliotecas -->
@@ -13,11 +13,27 @@
 		<junit.version>4.12</junit.version>
 		<logback.version>1.1.7</logback.version>
 		<slf4j.version>1.7.21</slf4j.version>
-		<lombok.version>1.16.16</lombok.version>	
+		<lombok.version>1.16.16</lombok.version>
+		<weld.version>2.2.6.Final</weld.version>
+		<jetty.version>9.4.8.v20171121</jetty.version>	
   </properties>
 
 
   <dependencies>
+  		<!-- jetty -->
+  		<dependency>
+		    <groupId>org.eclipse.jetty</groupId>
+		    <artifactId>jetty-server</artifactId>
+		    <version>${jetty.version}</version>
+		</dependency>
+  
+  		<!-- CDI com weld -->
+  		<dependency>
+			<groupId>org.jboss.weld.se</groupId>
+			<artifactId>weld-se</artifactId>
+			<version>${weld.version}</version>
+		</dependency>
+  
   		<!-- jpa com hibernate -->
   		<dependency>
 			<groupId>org.hibernate</groupId>
